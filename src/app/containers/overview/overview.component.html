@@ -1,0 +1,9 @@
+<section class="container">
+  <app-input-card
+    [titleControl]="form.get('title')"
+    [linkControl]="form.get('link')"
+    (addLinkEmt)="logValues()"
+  ></app-input-card>
+  <!-- List section -->
+  <article class="list-area"></article>
+</section>

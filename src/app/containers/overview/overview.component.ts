@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Component, OnInit, Input } from '@angular/core';
 import {
   FormControl,
@@ -5,6 +6,7 @@ import {
   Validators,
   ValidationErrors
 } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 const urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 
@@ -17,7 +19,7 @@ export class OverviewComponent implements OnInit {
   // Form to grab user input
   form: FormGroup;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -29,10 +31,19 @@ export class OverviewComponent implements OnInit {
   private isValidLink(control: FormControl): ValidationErrors {
     const textExp: RegExp = urlRegex;
     if (!textExp.test(control.value)) {
-      return { invalidText: true };
+      return { invalidLink: true };
     }
     return null;
   }
 
   checkUrlExists(url) {}
+
+  logValues() {
+    const link = this.form.get('link').value;
+    console.log('title', this.form.get('title').value);
+    console.log('link', link);
+    this.http
+      .get(environment.linkPreviewKey + link)
+      .subscribe(data => console.log(data));
+  }
 }

@@ -1,5 +1,5 @@
-import { ResultComponent } from './result/result.component';
-import { OverviewComponent } from './overview/overview.component';
+import { ResultComponent } from './containers/result/result.component';
+import { OverviewComponent } from './containers/overview/overview.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
