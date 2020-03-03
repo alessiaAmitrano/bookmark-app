@@ -1,5 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  Validators,
+  ValidationErrors
+} from '@angular/forms';
+
+const urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 
 @Component({
   selector: 'app-overview',
@@ -7,14 +14,25 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
-  // The form control for the title
-  @Input() formTitle: FormControl;
-  // The form control for the link
-  @Input() formLink: FormControl;
+  // Form to grab user input
+  form: FormGroup;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.form = new FormGroup({
+      title: new FormControl('', [Validators.required]),
+      link: new FormControl('', [Validators.required, this.isValidLink])
+    });
+  }
+
+  private isValidLink(control: FormControl): ValidationErrors {
+    const textExp: RegExp = urlRegex;
+    if (!textExp.test(control.value)) {
+      return { invalidText: true };
+    }
+    return null;
+  }
 
   checkUrlExists(url) {}
 }
