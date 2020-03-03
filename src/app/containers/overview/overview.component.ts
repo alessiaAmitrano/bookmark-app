@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
+// Regular expression to validate Urls
 const urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 
 @Component({
@@ -22,12 +23,14 @@ export class OverviewComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    // Initialise the form
     this.form = new FormGroup({
       title: new FormControl('', [Validators.required]),
       link: new FormControl('', [Validators.required, this.isValidLink])
     });
   }
 
+  // Check Link with Regular Expression
   private isValidLink(control: FormControl): ValidationErrors {
     const textExp: RegExp = urlRegex;
     if (!textExp.test(control.value)) {
@@ -36,7 +39,7 @@ export class OverviewComponent implements OnInit {
     return null;
   }
 
-  checkUrlExists(url) {}
+  // checkUrlExists(url) {}
 
   logValues() {
     const link = this.form.get('link').value;
