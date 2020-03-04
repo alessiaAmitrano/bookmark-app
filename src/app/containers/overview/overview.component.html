@@ -2,8 +2,13 @@
   <app-input-card
     [titleControl]="form.get('title')"
     [linkControl]="form.get('link')"
-    (addLinkEmt)="logValues()"
+    (addLinkEmt)="onLinkSubmit()"
   ></app-input-card>
   <!-- List section -->
-  <article class="list-area"></article>
+  <article class="list-area">
+    <app-link-detail-card
+      *ngFor="let link of links"
+      [link]="link"
+    ></app-link-detail-card>
+  </article>
 </section>

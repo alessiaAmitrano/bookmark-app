@@ -1,0 +1,16 @@
+.link-card {
+  // TODO: media query
+  min-width: 30%;
+  max-width: 50%;
+  margin: 1.5rem auto;
+  background-color: #424242;
+  color: white;
+
+  .link-image {
+    width: 200px;
+    height: 200px;
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}

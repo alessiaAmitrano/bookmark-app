@@ -1,3 +1,4 @@
+import { LinkModel } from './../../core/models/link.model';
 import { environment } from './../../../environments/environment';
 import { Component, OnInit, Input } from '@angular/core';
 import {
@@ -7,6 +8,8 @@ import {
   ValidationErrors
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngxs/store';
+import { Router } from '@angular/router';
 
 // Regular expression to validate Urls
 const urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
@@ -19,8 +22,14 @@ const urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{
 export class OverviewComponent implements OnInit {
   // Form to grab user input
   form: FormGroup;
+  // Link list
+  links: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private store: Store,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     // Initialise the form
@@ -41,12 +50,28 @@ export class OverviewComponent implements OnInit {
 
   // checkUrlExists(url) {}
 
-  logValues() {
+  onLinkSubmit() {
     const link = this.form.get('link').value;
     console.log('title', this.form.get('title').value);
     console.log('link', link);
-    this.http
-      .get(environment.linkPreviewKey + link)
-      .subscribe(data => console.log(data));
+    // this.http
+    //   .get(environment.linkPreviewKey + link)
+    //   .subscribe(data => this.addLink(data));
+    this.routerGo('result');
+  }
+
+  addLink(data: any): void {
+    const link: LinkModel = {
+      title: data.title,
+      description: data.description,
+      picture: data.image,
+      url: data.url
+    };
+    this.links.push(link);
+  }
+
+  // facilitator for the router method
+  routerGo(route: string) {
+    this.router.navigate([route]);
   }
 }

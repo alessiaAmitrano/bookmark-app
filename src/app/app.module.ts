@@ -14,6 +14,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InputCardComponent } from './components/input-card/input-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LinkDetailCardComponent } from './components/link-detail-card/link-detail-card.component';
 
 // App components
 const COMPONENTS = [OverviewComponent, ResultComponent, InputCardComponent];
@@ -32,7 +33,7 @@ const MODULES = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...COMPONENTS],
+  declarations: [AppComponent, ...COMPONENTS, LinkDetailCardComponent],
   imports: [AppRoutingModule, ...MODULES],
   providers: [],
   bootstrap: [AppComponent]
