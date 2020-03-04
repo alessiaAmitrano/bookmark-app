@@ -5,26 +5,6 @@
   </mat-card-header>
   <mat-divider [inset]="true"></mat-divider>
   <mat-card-content>
-    <!--  Title input field -->
-    <mat-form-field appearance="outline">
-      <mat-label>Title</mat-label>
-      <input
-        #inputTitle
-        matInput
-        id="input-title"
-        type="text"
-        name="title"
-        autocomplete="off"
-        [formControl]="titleControl"
-      />
-      <!-- Errors -  Title Required -->
-      <mat-error *ngIf="titleControl.hasError('required')">
-        Please insert a title
-      </mat-error>
-    </mat-form-field>
-
-    <br />
-
     <!--  Link input field -->
     <mat-form-field appearance="outline">
       <mat-label>Link</mat-label>

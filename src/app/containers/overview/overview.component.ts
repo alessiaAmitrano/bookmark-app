@@ -1,3 +1,6 @@
+import { LinkSelectors } from './../../core/store/link.selectors';
+import { LinkState } from './../../core/store/link.state';
+import { AddLink } from './../../core/store/link.actions';
 import { LinkModel } from './../../core/models/link.model';
 import { environment } from './../../../environments/environment';
 import { Component, OnInit, Input } from '@angular/core';
@@ -8,8 +11,9 @@ import {
   ValidationErrors
 } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 // Regular expression to validate Urls
 const urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
@@ -20,10 +24,14 @@ const urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
+  // Select Store Links
+  @Select(LinkSelectors.getLinks) links$: Observable<LinkModel[]>;
   // Form to grab user input
   form: FormGroup;
-  // Link list
-  links: any[] = [];
+  // Boolean to signal the website doesn't exists (the http call returned an error)
+  urlExists: boolean;
+  // Invalid response status code (actual response code from the remote server)
+  invalidUrlCode = 425;
 
   constructor(
     private http: HttpClient,
@@ -34,7 +42,6 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
     // Initialise the form
     this.form = new FormGroup({
-      title: new FormControl('', [Validators.required]),
       link: new FormControl('', [Validators.required, this.isValidLink])
     });
   }
@@ -48,26 +55,32 @@ export class OverviewComponent implements OnInit {
     return null;
   }
 
-  // checkUrlExists(url) {}
-
+  // perform http call to check that Url exists and retreive info, otherwise handle error
   onLinkSubmit() {
     const link = this.form.get('link').value;
-    console.log('title', this.form.get('title').value);
     console.log('link', link);
-    // this.http
-    //   .get(environment.linkPreviewKey + link)
-    //   .subscribe(data => this.addLink(data));
-    this.routerGo('result');
+    this.http.get(environment.linkPreviewKey + link).subscribe(
+      (data: LinkModel[]) => {
+        this.urlExists = true;
+        this.addLink(data);
+      },
+      error => {
+        console.log('error', error);
+        if (error.status === this.invalidUrlCode) {
+          this.urlExists = false;
+          setTimeout(() => {
+            this.urlExists = null;
+          }, 5000);
+        }
+      }
+    );
   }
 
+  // add link to the array in store and localstorage
   addLink(data: any): void {
-    const link: LinkModel = {
-      title: data.title,
-      description: data.description,
-      picture: data.image,
-      url: data.url
-    };
-    this.links.push(link);
+    this.store.dispatch(new AddLink(data));
+    // go to the result page
+    this.routerGo('result');
   }
 
   // facilitator for the router method

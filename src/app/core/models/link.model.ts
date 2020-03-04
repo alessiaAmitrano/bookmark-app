@@ -1,6 +1,6 @@
 export class LinkModel {
   title: string;
   description: string;
-  picture: string;
+  image: string;
   url: string;
 }

@@ -1,13 +1,17 @@
 <section class="container">
   <app-input-card
-    [titleControl]="form.get('title')"
     [linkControl]="form.get('link')"
     (addLinkEmt)="onLinkSubmit()"
   ></app-input-card>
   <!-- List section -->
   <article class="list-area">
+    <!-- Error message : displays id Url does not exist -->
+    <span class="url-warning" [ngClass]="{ show: urlExists === false }">
+      The Url does not exist. Try again</span
+    >
+
     <app-link-detail-card
-      *ngFor="let link of links"
+      *ngFor="let link of links$ | async"
       [link]="link"
     ></app-link-detail-card>
   </article>

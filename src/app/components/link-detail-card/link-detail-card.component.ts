@@ -8,14 +8,14 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./link-detail-card.component.scss']
 })
 export class LinkDetailCardComponent implements OnInit {
-  //The Link Object
+  // The Link Object
   @Input() link: LinkModel;
 
   constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {}
 
-  // Return url formatted for css background image
+  // sanitize background image
   getBkgImg(url: string) {
     return this.sanitizer.bypassSecurityTrustStyle(`url(${url})`);
   }

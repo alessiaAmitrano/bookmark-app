@@ -21,9 +21,5 @@ export class AppComponent {
     // Check the localstorage and get the links from there. If empty initialise the Links object.
     this.localStorage = JSON.parse(localStorage.getItem('Links'));
     console.log('loc', this.localStorage);
-    if (!this.localStorage) {
-      console.log('get links');
-      // this.linksFacade.getLinks();
-    }
   }
 }

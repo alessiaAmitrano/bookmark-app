@@ -7,8 +7,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./input-card.component.scss']
 })
 export class InputCardComponent implements OnInit {
-  // Title
-  @Input() titleControl: FormControl;
   // Link
   @Input() linkControl: FormControl;
   // Submit Event
