@@ -1,3 +1,10 @@
 <div class="link-card">
+  <!-- <div class="x-icon">
+    <img src="assets/edit.png" alt="" />
+  </div> -->
   <div class="link-image" [style.backgroundImage]="getBkgImg(link.image)"></div>
+  <div class="info">
+    <h1>{{ link.title }}</h1>
+    <a [href]="link.url">{{ link.url | textEllipsis: 100 }}</a>
+  </div>
 </div>

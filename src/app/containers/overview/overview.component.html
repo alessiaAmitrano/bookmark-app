@@ -4,12 +4,11 @@
     (addLinkEmt)="onLinkSubmit()"
   ></app-input-card>
   <!-- List section -->
+  <!-- Error message : displays id Url does not exist -->
+  <span class="url-warning" [ngClass]="{ show: urlExists === false }">
+    The Url does not exist. Try again</span
+  >
   <article class="list-area">
-    <!-- Error message : displays id Url does not exist -->
-    <span class="url-warning" [ngClass]="{ show: urlExists === false }">
-      The Url does not exist. Try again</span
-    >
-
     <app-link-detail-card
       *ngFor="let link of links$ | async"
       [link]="link"

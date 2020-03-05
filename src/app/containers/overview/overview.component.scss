@@ -1,22 +1,22 @@
 .container {
+  .url-warning {
+    margin: 0 auto;
+    font-size: 25px;
+    color: #f44336;
+    opacity: 0;
+    transition: 0.3s linear;
+
+    &.show {
+      opacity: 1;
+      transform: opacity;
+    }
+  }
   .list-area {
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-
-    .url-warning {
-      margin: 0 auto;
-      font-size: 25px;
-      color: #f44336;
-      opacity: 0;
-      transition: 0.3s linear;
-
-      &.show {
-        opacity: 1;
-        transform: opacity;
-      }
-    }
+    justify-content: center;
+    align-items: center;
   }
 }

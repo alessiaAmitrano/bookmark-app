@@ -7,9 +7,10 @@ import { environment } from 'src/environments/environment';
 import { NgxsModule } from '@ngxs/store';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { TextEllipsisPipe } from './pipes/text-ellipsis.pipe';
 
 @NgModule({
-  declarations: [],
+  declarations: [TextEllipsisPipe],
   imports: [
     CommonModule,
     NgxsModule.forRoot([LinkState], {
@@ -22,6 +23,6 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
       disabled: environment.production
     })
   ],
-  exports: [NgxsModule]
+  exports: [NgxsModule, TextEllipsisPipe]
 })
 export class CoreModule {}

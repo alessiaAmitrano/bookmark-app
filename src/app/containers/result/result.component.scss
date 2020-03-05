@@ -1,16 +1,24 @@
 .container {
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 
   h1 {
-    margin-top: 8rem;
+    margin-top: 4rem;
     color: white;
+  }
+
+  app-link-detail-card {
+    margin: 1rem auto;
   }
 
   button {
     color: white;
     border: 2px solid transparent;
     transition: 0.3s ease-in;
+    width: 8rem;
+    margin: 2rem auto;
 
     &:hover {
       border-color: white;
