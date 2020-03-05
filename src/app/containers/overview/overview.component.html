@@ -1,7 +1,9 @@
 <section class="container">
   <app-input-card
     [linkControl]="form.get('link')"
+    [isEditLinkOn]="!!editedLink"
     (addLinkEmt)="onLinkSubmit()"
+    (editLinkEmt)="onLinkEditSubmit()"
   ></app-input-card>
   <!-- List section -->
   <!-- Error message : displays id Url does not exist -->
@@ -10,9 +12,11 @@
   >
   <article class="list-area">
     <app-link-detail-card
-      *ngFor="let link of links$ | async"
+      *ngFor="let link of links"
       [link]="link"
+      [showEditBtns]="canEditLinks"
       (deleteLinkEmt)="onDeleteLink(link)"
+      (editLinkEmt)="onEditLink(link)"
     ></app-link-detail-card>
   </article>
 </section>

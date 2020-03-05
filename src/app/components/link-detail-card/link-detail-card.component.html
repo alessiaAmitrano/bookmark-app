@@ -1,10 +1,13 @@
 <div class="link-card">
-  <div class="icon" (click)="deleteLinkEmt.emit()">
+  <!-- Delete button -->
+  <div class="icon" *ngIf="showEditBtns" (click)="deleteLinkEmt.emit()">
     <img src="assets/close.png" alt="" />
   </div>
-  <div class="icon edit">
+  <!-- Edit Button -->
+  <div class="icon edit" *ngIf="showEditBtns" (click)="editLinkEmt.emit()">
     <img src="assets/edit.png" alt="" />
   </div>
+  <!-- Card -->
   <div class="link-image" [style.backgroundImage]="getBkgImg(link.image)"></div>
   <div class="info">
     <h1>{{ link.title }}</h1>

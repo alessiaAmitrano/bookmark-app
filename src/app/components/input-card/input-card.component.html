@@ -26,6 +26,11 @@
   </mat-card-content>
   <mat-card-actions align="end">
     <!-- Submit Button -->
-    <button mat-button (click)="addLinkEmt.emit()">Add Link</button>
+    <button mat-button *ngIf="!isEditLinkOn" (click)="addLinkEmt.emit()">
+      Add Link
+    </button>
+    <button mat-button *ngIf="isEditLinkOn" (click)="editLinkEmt.emit()">
+      Edit Link
+    </button>
   </mat-card-actions>
 </mat-card>

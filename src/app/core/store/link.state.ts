@@ -1,4 +1,4 @@
-import { AddLink, DeleteLink } from './link.actions';
+import { AddLink, DeleteLink, EditLink } from './link.actions';
 import { LinkStateModel, LINK_INITIAL_STATE } from './link.adapter';
 
 import { State, Action, StateContext } from '@ngxs/store';
@@ -26,7 +26,13 @@ export class LinkState {
   @Action(DeleteLink)
   deleteLink(ctx: StateContext<LinkStateModel>, { payload }: DeleteLink) {
     const state = ctx.getState();
-
     ctx.patchState({ links: payload, lastLink: null });
+  }
+
+  // Edit link from state
+  @Action(EditLink)
+  editLink(ctx: StateContext<LinkStateModel>, { payload }: EditLink) {
+    const state = ctx.getState();
+    ctx.patchState({ links: payload });
   }
 }

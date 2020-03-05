@@ -13,6 +13,8 @@ import { Observable } from 'rxjs';
 export class ResultComponent implements OnInit {
   // Select for last Link added
   @Select(LinkSelectors.getLastLink) lastLink$: Observable<LinkModel>;
+  // Boolean to show edit buttons on links
+  canEditLinks = false;
 
   constructor(private router: Router, private store: Store) {}
 

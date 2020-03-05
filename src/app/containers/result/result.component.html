@@ -1,7 +1,10 @@
 <section class="container">
   <h1>Thank you for your submission!</h1>
   <!-- ink submitted -->
-  <app-link-detail-card [link]="lastLink$ | async"></app-link-detail-card>
+  <app-link-detail-card
+    [link]="lastLink$ | async"
+    [showEditBtns]="canEditLinks"
+  ></app-link-detail-card>
   <!-- Go Back -->
   <button mat-button (click)="routerGo('')">Back</button>
 </section>

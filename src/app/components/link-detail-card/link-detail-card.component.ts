@@ -17,8 +17,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class LinkDetailCardComponent implements OnInit {
   // The Link Object
   @Input() link: LinkModel;
+  // Show edit buttons
+  @Input() showEditBtns: true;
   // Event for link deletion
   @Output() deleteLinkEmt: EventEmitter<any> = new EventEmitter<any>();
+  // Event for link editing
+  @Output() editLinkEmt: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private sanitizer: DomSanitizer) {}
 

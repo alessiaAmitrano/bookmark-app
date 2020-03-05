@@ -9,8 +9,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class InputCardComponent implements OnInit {
   // Link
   @Input() linkControl: FormControl;
-  // Submit Event
+  // Is Edit process on
+  @Input() isEditLinkOn: boolean;
+  // Event emitter for Link Add
   @Output() addLinkEmt: EventEmitter<any> = new EventEmitter<any>();
+  // Event emitter for link Edit
+  @Output() editLinkEmt: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 
