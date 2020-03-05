@@ -12,6 +12,7 @@
     <app-link-detail-card
       *ngFor="let link of links$ | async"
       [link]="link"
+      (deleteLinkEmt)="onDeleteLink(link)"
     ></app-link-detail-card>
   </article>
 </section>

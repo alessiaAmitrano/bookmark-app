@@ -1,5 +1,12 @@
 import { LinkModel } from './../../core/models/link.model';
-import { Component, OnInit, Input, Sanitizer } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Sanitizer,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -10,6 +17,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class LinkDetailCardComponent implements OnInit {
   // The Link Object
   @Input() link: LinkModel;
+  // Event for link deletion
+  @Output() deleteLinkEmt: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private sanitizer: DomSanitizer) {}
 

@@ -1,6 +1,6 @@
 import { LinkSelectors } from './../../core/store/link.selectors';
 import { LinkState } from './../../core/store/link.state';
-import { AddLink } from './../../core/store/link.actions';
+import { AddLink, DeleteLink } from './../../core/store/link.actions';
 import { LinkModel } from './../../core/models/link.model';
 import { environment } from './../../../environments/environment';
 import { Component, OnInit, Input } from '@angular/core';
@@ -34,6 +34,8 @@ export class OverviewComponent implements OnInit {
   urlExists: boolean;
   // Invalid response status code (actual response code from the remote server)
   invalidUrlCode = 425;
+  // Id of the last link added
+  nextLinkId = 0;
 
   constructor(
     private http: HttpClient,
@@ -82,10 +84,21 @@ export class OverviewComponent implements OnInit {
 
   // add link to the array in store and localstorage
   addLink(data: any): void {
-    data.id = this.links.length;
+    if (this.links.length !== 0) {
+      this.nextLinkId++;
+    }
+    data.id = this.nextLinkId;
     this.store.dispatch(new AddLink(data));
     // go to the result page
     this.routerGo('result');
+  }
+
+  // Deletes link from the list
+  onDeleteLink(link: LinkModel) {
+    console.log('Deleting item with id ', link.id);
+    const newList =
+      this.links.length > 1 ? this.links.filter(el => el.id !== link.id) : [];
+    this.store.dispatch(new DeleteLink(newList));
   }
 
   // facilitator for the router method
