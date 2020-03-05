@@ -9,10 +9,14 @@ import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { TextEllipsisPipe } from './pipes/text-ellipsis.pipe';
 
+// Pagination Module
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [TextEllipsisPipe],
   imports: [
     CommonModule,
+    NgxPaginationModule,
     NgxsModule.forRoot([LinkState], {
       developmentMode: !environment.production
     }),
@@ -23,6 +27,6 @@ import { TextEllipsisPipe } from './pipes/text-ellipsis.pipe';
       disabled: environment.production
     })
   ],
-  exports: [NgxsModule, TextEllipsisPipe]
+  exports: [NgxsModule, NgxPaginationModule, TextEllipsisPipe]
 })
 export class CoreModule {}

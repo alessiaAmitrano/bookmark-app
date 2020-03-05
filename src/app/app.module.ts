@@ -13,7 +13,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { LinkDetailCardComponent } from './components/link-detail-card/link-detail-card.component';
 
 // App components
-const COMPONENTS = [OverviewComponent, ResultComponent, InputCardComponent];
+const COMPONENTS = [
+  OverviewComponent,
+  ResultComponent,
+  InputCardComponent,
+  LinkDetailCardComponent
+];
 
 // App modules
 const MODULES = [
@@ -27,7 +32,7 @@ const MODULES = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...COMPONENTS, LinkDetailCardComponent],
+  declarations: [AppComponent, ...COMPONENTS],
   imports: [AppRoutingModule, ...MODULES],
   providers: [],
   bootstrap: [AppComponent]

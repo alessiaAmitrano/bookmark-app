@@ -12,11 +12,14 @@
   >
   <article class="list-area">
     <app-link-detail-card
-      *ngFor="let link of links"
+      *ngFor="
+        let link of links | paginate: { itemsPerPage: 20, currentPage: p }
+      "
       [link]="link"
       [showEditBtns]="canEditLinks"
       (deleteLinkEmt)="onDeleteLink(link)"
       (editLinkEmt)="onEditLink(link)"
     ></app-link-detail-card>
   </article>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </section>

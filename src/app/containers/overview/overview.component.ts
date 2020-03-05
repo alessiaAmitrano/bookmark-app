@@ -19,6 +19,8 @@ const urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
+  // page
+  p = 1;
   // Links
   links: LinkModel[];
   // Form to grab user input
@@ -29,7 +31,6 @@ export class OverviewComponent implements OnInit {
   isEditingLink = false;
   // Link being edited
   editedLink: LinkModel;
-
   // Boolean to signal the website doesn't exists (the http call returned an error)
   urlExists: boolean;
 
