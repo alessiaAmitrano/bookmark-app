@@ -20,4 +20,12 @@
     justify-content: center;
     align-items: center;
   }
+
+  .pagination-menu {
+    margin: 0 auto;
+
+    ::ng-deep a {
+      color: #cacaca !important;
+    }
+  }
 }

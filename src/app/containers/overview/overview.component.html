@@ -21,5 +21,12 @@
       (editLinkEmt)="onEditLink(link)"
     ></app-link-detail-card>
   </article>
-  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <pagination-controls
+    class="pagination-menu"
+    (pageChange)="p = $event"
+    maxSize="9"
+    directionLinks="true"
+    previousLabel="Prev."
+    responsive="true"
+  ></pagination-controls>
 </section>
