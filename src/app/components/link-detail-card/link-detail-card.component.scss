@@ -13,18 +13,28 @@
   text-align: center;
   position: relative;
 
-  .x-icon {
+  .icon {
     position: absolute;
-    right: 0;
+    right: -0.5rem;
+    top: -0.5rem;
     width: 25px;
     height: 25px;
     text-align: center;
     border-radius: 50%;
-    background-color: black;
+    background-color: #424242;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 3px rgba(0, 0, 0, 0.5);
+
+    &.edit {
+      top: 2rem;
+    }
+
     img {
-      width: 20px;
-      height: 20px;
-      background-color: white;
+      width: 10px;
+      height: 10px;
+      padding-bottom: 1px;
     }
   }
 

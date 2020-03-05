@@ -24,8 +24,10 @@ const urlRegex = /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
-  // Select Store Links
+  // Links Observable
   @Select(LinkSelectors.getLinks) links$: Observable<LinkModel[]>;
+  // Links
+  links: LinkModel[];
   // Form to grab user input
   form: FormGroup;
   // Boolean to signal the website doesn't exists (the http call returned an error)
@@ -37,7 +39,9 @@ export class OverviewComponent implements OnInit {
     private http: HttpClient,
     private store: Store,
     private router: Router
-  ) {}
+  ) {
+    this.links$.subscribe(links => (this.links = links));
+  }
 
   ngOnInit() {
     // Initialise the form
@@ -78,6 +82,7 @@ export class OverviewComponent implements OnInit {
 
   // add link to the array in store and localstorage
   addLink(data: any): void {
+    data.id = this.links.length;
     this.store.dispatch(new AddLink(data));
     // go to the result page
     this.routerGo('result');
