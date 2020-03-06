@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   linkPreviewKey:
-    'http://api.linkpreview.net/?key=8effd7b1c1426f18a868e77098a34f13&q='
+    'https://api.linkpreview.net/?key=8effd7b1c1426f18a868e77098a34f13&q='
 };
 
 /*
