@@ -27,11 +27,10 @@ export class AppComponent {
   }
 
   getPage(outlet: RouterOutlet) {
-    // tslint:disable-next-line: no-string-literal
-    // return outlet.activatedRouteData['page'] || '';
     return (
       outlet &&
       outlet.activatedRouteData &&
+      // tslint:disable-next-line: no-string-literal
       outlet.activatedRouteData['animation']
     );
   }
