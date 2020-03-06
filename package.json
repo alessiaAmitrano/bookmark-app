@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "githubpage": "ng build --outputPath=docs",
+    "githubpage": "ng build --outputPath=docs --base-href=https://alessiaamitrano.github.io/bookmark-app/",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
