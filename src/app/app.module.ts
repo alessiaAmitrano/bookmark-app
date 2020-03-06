@@ -23,10 +23,10 @@ const COMPONENTS = [
 // App modules
 const MODULES = [
   BrowserModule,
+  BrowserAnimationsModule,
   FormsModule,
   ReactiveFormsModule,
   HttpClientModule,
-  BrowserAnimationsModule,
   MaterialUiModule,
   CoreModule
 ];

@@ -5,6 +5,7 @@ import {
   Validators,
   ValidationErrors
 } from '@angular/forms';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -21,5 +22,10 @@ export class AppComponent {
     // Check the localstorage and get the links from there. If empty initialise the Links object.
     this.localStorage = JSON.parse(localStorage.getItem('Links'));
     console.log('loc', this.localStorage);
+  }
+
+  getPage(outlet: RouterOutlet) {
+    // tslint:disable-next-line: no-string-literal
+    return outlet.activatedRouteData['page'] || '';
   }
 }

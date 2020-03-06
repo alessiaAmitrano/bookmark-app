@@ -1,27 +1,37 @@
 # BookmarksApp
 
+## Overview
+
+This app allows users to add bookmarks to their favourite Urls. At the submission, an Http request will be sent to the service [LinkPreview](www.linkpreview.net) to receive basic info about the submitted link.
+Users can also delete or edit links that have been previously submitted.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
 
-## Development server
+## App Structure
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The app is divided in two main routes, Overview and Result. The Overview page is the main page, it contains an input form and the list of submitted bookmarks.
+The results page displays a thank you message and basic data about the bookmark created.
 
-## Code scaffolding
+### Data flow
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The data flow is handled by the LinkStore generated with NgXs. It is the single source of truth for the application and updates every time the user performs a CRUD action. Moreover, it is connected to the Localstorage so that the submitted bookmarks are not lost on page refresh.
 
-## Build
+When the app starts, the app.component.ts performs a check on the LocalStorage and if bookmarks are found, they are saved in the Store. In the same way, every time the store is updated, the localstorage is updated too.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The communication between components and store is handled by a facade service for separation of concerns.
 
-## Running unit tests
+The input form is build with Angular Material and is validated with a Regular Expression.
+The url's existence is checked through the httpRequest to Linkpreview. If the Url does not exist, a 425 error is returned.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Some websites like Facebook or Netflix do not allow to grab info through the service, therefore they will return an error.
+These are the only two cases I've discovered so far.
 
-## Running end-to-end tests
+### Pagination
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+The pagination is handled through the library [ngx-pagination](https://github.com/michaelbromley/ngx-pagination#readme)
 
-## Further help
+### Animations
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The app contains some very basic fade animations and a routing Angular Animation.
+
+## Development serve
