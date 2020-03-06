@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { CoreModule } from './core/core.module';
 import { MaterialUiModule } from './utils/material-ui/material-ui.module';
 import { ResultComponent } from './containers/result/result.component';

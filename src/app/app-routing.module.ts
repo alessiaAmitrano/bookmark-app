@@ -4,8 +4,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: OverviewComponent },
-  { path: 'result', component: ResultComponent }
+  {
+    path: '',
+    component: OverviewComponent,
+    data: { animation: 'OverviewPage' }
+  },
+  {
+    path: 'result',
+    component: ResultComponent,
+    data: { animation: 'ResultPage' }
+  }
 ];
 
 @NgModule({

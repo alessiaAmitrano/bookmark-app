@@ -1,3 +1,4 @@
+import { routerAnimation } from './animations/routing.animations';
 import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
@@ -10,7 +11,8 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [routerAnimation]
 })
 export class AppComponent {
   // Localstorage
@@ -26,6 +28,11 @@ export class AppComponent {
 
   getPage(outlet: RouterOutlet) {
     // tslint:disable-next-line: no-string-literal
-    return outlet.activatedRouteData['page'] || '';
+    // return outlet.activatedRouteData['page'] || '';
+    return (
+      outlet &&
+      outlet.activatedRouteData &&
+      outlet.activatedRouteData['animation']
+    );
   }
 }

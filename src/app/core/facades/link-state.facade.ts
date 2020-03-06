@@ -84,8 +84,9 @@ export class LinkStateFacade {
   }
 
   private editLink(linkData: any, id: number, links: LinkModel[]) {
+    const data = [...links];
     const newList = [];
-    for (const link of links) {
+    for (const link of data) {
       if (link.id === id) {
         link.description = linkData.description;
         link.image = linkData.image;

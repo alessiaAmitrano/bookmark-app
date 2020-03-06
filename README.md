@@ -14,7 +14,7 @@ The results page displays a thank you message and basic data about the bookmark 
 
 ### Data flow
 
-The data flow is handled by the LinkStore generated with NgXs. It is the single source of truth for the application and updates every time the user performs a CRUD action. Moreover, it is connected to the Localstorage so that the submitted bookmarks are not lost on page refresh.
+The data flow is handled by the LinkStore generated with [NgXs](https://www.ngxs.io/). It is the single source of truth for the application and updates every time the user performs a CRUD action. Moreover, it is connected to the Localstorage so that the submitted bookmarks are not lost on page refresh.
 
 When the app starts, the app.component.ts performs a check on the LocalStorage and if bookmarks are found, they are saved in the Store. In the same way, every time the store is updated, the localstorage is updated too.
 
@@ -34,4 +34,4 @@ The pagination is handled through the library [ngx-pagination](https://github.co
 
 The app contains some very basic fade animations and a routing Angular Animation.
 
-## Development serve
+Coded by [Alessia Amitrano](https://github.com/alessiaAmitrano)

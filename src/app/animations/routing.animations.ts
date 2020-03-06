@@ -10,8 +10,8 @@ import {
 } from '@angular/animations';
 
 export const routerAnimation = trigger('routerAnimation', [
-  transition('* => result', slideRoutes()),
-  transition('result => *', slideRoutes())
+  transition('OverviewPage => ResultPage', slideRoutes()),
+  transition('ResultPage => OverviewPage', slideRoutes())
 ]);
 
 export function slideRoutes() {
