@@ -1333,7 +1333,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const environment = {
     production: false,
-    linkPreviewKey: 'http://api.linkpreview.net/?key=8effd7b1c1426f18a868e77098a34f13&q='
+    linkPreviewKey: 'https://api.linkpreview.net/?key=8effd7b1c1426f18a868e77098a34f13&q='
 };
 /*
  * For easier debugging in development mode, you can import the following file
